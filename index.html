@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,3 +71,43 @@
         }
     </style>
 </head>
+<body>
+    <div class="calculator">
+        <h1>Kalkulator Zodiac Skin by Pidah Soma</h1>
+        <label for="skins">Berapa Skin Zodiac Yang Telah Anda Miliki:</label>
+        <select id="skins">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6+</option>
+        </select>
+        <button onclick="calculate()">Kira</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const skins = parseInt(document.getElementById("skins").value);
+            let points = skins * 10;
+            if (skins >= 6) points = 60;
+
+            const requiredPoints = 100 - points;
+            const draws3 = Math.ceil(requiredPoints / 3);
+            const coa3 = draws3 * 14;
+
+            const draws15 = Math.ceil(requiredPoints / 1.5);
+            const coa15 = draws15 * 14;
+
+            document.getElementById("result").innerHTML = `
+                <p>Poin Terkumpul: ${points}</p>
+                <p>Poin Diperlukan: ${requiredPoints}</p>
+                <p>Jika 1 x kali Draw dapat 3 Poin: Maka perlu ${draws3} x Draw, Sekitar ${coa3} COA</p>
+                <p>Jika 1 x Draw boleh 1.5 Poin Sahaja: Maka perlu ${draws15} x Draw, Sekitar ${coa15} COA</p>
+            `;
+        }
+    </script>
+</body>
+</html>
